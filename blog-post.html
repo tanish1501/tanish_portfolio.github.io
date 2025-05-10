@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Web Development Trends | MyPortfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5D5FEF;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #5D5FEF;
+        }
+        
+        .active {
+            color: #5D5FEF !important;
+        }
+        
+        /* Blog Post Styles */
+        .blog-post-header {
+            background-color: #5D5FEF;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .blog-post-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+        }
+        
+        .blog-meta i {
+            margin-right: 5px;
+        }
+        
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: -30px;
+            position: relative;
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .blog-tags {
+            margin-bottom: 20px;
+        }
+        
+        .blog-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+            color: #333;
+        }
+        
+        .blog-content h2 {
+            font-size: 28px;
+            margin: 30px 0 15px;
+            color: #333;
+        }
+        
+        .blog-content p {
+            margin-bottom: 20px;
+            font-size: 17px;
+            color: #444;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .blog-content li {
+            margin-bottom: 10px;
+        }
+        
+        blockquote {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #5D5FEF;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        
+        /* Author Info */
+        .author-info {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            margin: 40px 0;
+        }
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background-color: #e0e0e0;
+        }
+        
+        .author-bio h3 {
+            margin-bottom: 10px;
+        }
+        
+        .author-bio p {
+            font-size: 15px;
+            color: #555;
+        }
+        
+        /* Post Navigation */
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .nav-previous, .nav-next {
+            max-width: 45%;
+        }
+        
+        .nav-previous a, .nav-next a {
+            text-decoration: none;
+            color: #5D5FEF;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-previous a:hover, .nav-next a:hover {
+            text-decoration: underline;
+        }
+        
+        .nav-previous i {
+            margin-right: 10px;
+        }
+        
+        .nav-next i {
+            margin-left: 10px;
+        }
+        
+        /* Related Posts */
+        .related-posts {
+            margin-top: 60px;
+        }
+        
+        .related-posts h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .related-posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .related-post {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .related-post-image {
+            height: 150px;
+            background-color: #e0e0e0;
+        }
+        
+        .related-post-info {
+            padding: 15px;
+        }
+        
+        .related-post-info h4 {
+            margin-bottom: 10px;
+        }
+        
+        .related-post-info a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .related-post-info a:hover {
+            color: #5D5FEF;
+        }
+        
+        .related-post-date {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Comments Section */
+        .comments-section {
+            margin-top: 60px;
+        }
+        
+        .comments-section h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .comment {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .comment-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background-color: #e0e0e0;
+        }
+        
+        .comment-content {
+            flex: 1;
+        }
+        
+        .comment-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .comment-author {
+            font-weight: 500;
+        }
+        
+        .comment-date {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .comment-text {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .comment-reply {
+            color: #5D5FEF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .comment-reply:hover {
+            text-decoration: underline;
+        }
+        
+        .comment-reply-form {
+            margin-top: 40px;
+        }
+        
+        .comment-reply-form h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            padding: 12px 30px;
+            background-color: #5D5FEF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .submit-button:hover {
+            background-color: #4a4cc7;
+        }
+        
+        /* Share Buttons */
+        .share-post {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .share-post h4 {
+            margin-bottom: 15px;
+        }
+        
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .share-button {
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.3s;
+        }
+        
+        .share-button:hover {
+            opacity: 0.9;
+        }
+        
+        .facebook {
+            background-color: #3b5998;
+        }
+        
+        .twitter {
+            background-color: #1da1f2;
+        }
+        
+        .linkedin {
+            background-color: #0077b5;
+        }
+        
+        .pinterest {
+            background-color: #bd081c;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #5D5FEF;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blog-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .related-posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comment {
+                flex-direction: column;
+            }
+            
+            .comment-avatar {
+                margin-bottom: 15px;
+            }
+            
+            .footer-section {
+                flex: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">MyPortfolio</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Blog Post Header -->
+    <section class="blog-post-header">
+        <div class="container">
+            <h1>Modern Web Development Trends</h1>
+            <div class="blog-meta">
+                <span><i class="far fa-user"></i> By: Your Name</span>
+                <span><i class="far fa-calendar"></i> May 8, 2025</span>
+                <span><i class="far fa-comment"></i> 5 Comments</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post Content -->
+    <div class="container">
+        <article class="blog-post-content">
+            <img src="/api/placeholder/800/400" alt="Featured Image" class="featured-image">
+            
+            <div class="blog-tags">
+                <span class="blog-tag">Web Development</span>
+                <span class="blog-tag">Trends</span>
+                <span class="blog-tag">Technology</span>
+            </div>
+            
+            <div class="blog-content">
+                <p>Web development is constantly evolving with new technologies, frameworks, and methodologies emerging each year. As we move through 2025, several key trends are shaping how developers build websites and applications. These innovations are not only changing how we code but also how users interact with the web.</p>
+                
+                <h2>1. AI-Powered Development Tools</h2>
+                <p>Artificial Intelligence is revolutionizing web development by automating repetitive tasks, providing smart code suggestions, and even generating entire components. Tools now offer real-time code analysis, identify potential bugs, and suggest optimizations before deployment. For developers, this means faster development cycles and fewer errors, while businesses benefit from reduced development costs and quicker time-to-market.</p>
+                
+                <p>The most exciting advancement is the rise of AI pair programmers that understand context, code structure, and best practices to assist developers throughout the development process. Rather than replacing developers, these tools enhance human creativity by handling routine coding tasks.</p>
+                
+                <blockquote>
+                    "AI isn't replacing developers - it's supercharging them by handling the mundane aspects of coding and freeing up mental space for solving complex problems." - Web Development Conference 2025
+                </blockquote>
+                
+                <h2>2. WebAssembly (WASM) Goes Mainstream</h2>
+                <p>WebAssembly has transformed from an emerging technology to a mainstream solution for high-performance web applications. By allowing code written in languages like C++, Rust, and Python to run at near-native speed in browsers, WASM enables complex applications that were previously impossible on the web.</p>
+                
+                <p>We're seeing WASM used for:</p>
+                <ul>
+                    <li>Complex data visualization tools</li>
+                    <li>Browser-based video editors</li>
+                    <li>Full-featured 3D games</li>
+                    <li>Resource-intensive scientific applications</li>
+                    <li>Secure processing of sensitive data client-side</li>
+                </ul>
+                
+                <h2>3. Web Components and Micro-Frontends</h2>
+                <p>The component-based approach to web development continues to evolve with native Web Components gaining wider adoption. This standard allows developers to create reusable UI elements that work across different frameworks and even without frameworks.</p>
+                
+                <p>In parallel, micro-frontend architecture—breaking frontend applications into smaller, independently deployable pieces—has become the preferred approach for large-scale web applications. This pattern allows teams to work autonomously, choose technologies independently, and deploy features without affecting the entire application.</p>

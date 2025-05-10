@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5D5FEF;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #5D5FEF;
+        }
+        
+        .active {
+            color: #5D5FEF !important;
+        }
+        
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+            padding: 50px 0;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        }
+        
+        .hero-content {
+            width: 60%;
+        }
+        
+        .hero-image {
+            width: 40%;
+            text-align: center;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #5D5FEF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #4a4cc7;
+        }
+        
+        /* Blog Section */
+        .blog-content {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 36px;
+            color: #333;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-info {
+            padding: 20px;
+        }
+        
+        .blog-info h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .blog-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .blog-date {
+            color: #5D5FEF;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .blog-tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-right: 5px;
+            color: #333;
+        }
+        
+        /* Portfolio Section */
+        .portfolio-content {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 300px;
+            background-color: #e0e0e0;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(93, 95, 239, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .portfolio-overlay p {
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #555;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: #5D5FEF;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+        }
+        
+        /* Full Blog Post Page */
+        .blog-post-content {
+            padding: 80px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .blog-post-header {
+            margin-bottom: 40px;
+        }
+        
+        .blog-post-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .blog-post-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .blog-post-meta img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .blog-post-author {
+            font-weight: 500;
+        }
+        
+        .blog-post-date {
+            color: #666;
+            margin-left: 20px;
+        }
+        
+        .blog-post-tags {
+            margin-bottom: 30px;
+        }
+        
+        .blog-post-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .blog-post-body {
+            line-height: 1.8;
+        }
+        
+        .blog-post-body p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .blog-post-body h2 {
+            margin: 40px 0 20px;
+            font-size: 28px;
+        }
+        
+        .blog-post-body ul, .blog-post-body ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        
+        .blog-post-body li {
+            margin-bottom: 10px;
+        }
+        
+        .blog-comments {
+            margin-top: 60px;
+        }
+        
+        .blog-comments h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        
+        .comment {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .comment-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+            background-color: #e0e0e0;
+        }
+        
+        .comment-content {
+            flex: 1;
+        }
+        
+        .comment-author {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .comment-date {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .comment-text {
+            line-height: 1.6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            
+            .hero-content, .hero-image {
+                width: 100%;
+            }
+            
+            .hero-image {
+                margin-bottom: 40px;
+            }
+            
+            .hero-image img {
+                max-width: 60%;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .footer-section {
+                flex: 100%;
+            }
+            
+            .blog-grid, .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">MyPortfolio</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Hi, I'm <span style="color: #5D5FEF;">Your Name</span></h1>
+                <p>I'm a passionate web developer with expertise in creating beautiful, functional websites and applications. Welcome to my portfolio where I showcase my latest projects and share my thoughts on web development.</p>
+                <a href="contact.html" class="btn">Get In Touch</a>
+            </div>
+            <div class="hero-image">
+                <img src="/api/placeholder/400/400" alt="Profile Image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="portfolio-content">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <h3>Project One</h3>
+                        <p>Web Design / Development</p>
+                        <a href="#" class="btn" style="margin-top: 20px;">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <h3>Project Two</h3>
+                        <p>Mobile Application</p>
+                        <a href="#" class="btn" style="margin-top: 20px;">View Project</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <h3>Project Three</h3>
+                        <p>UI/UX Design</p>
+                        <a href="#" class="btn" style="margin-top: 20px;">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="portfolio.html" class="btn">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Blog Posts -->
+    <section class="blog-content">
+        <div class="container">
+            <h2 class="section-title">Latest From The Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="/api/placeholder/350/200" alt="Blog Image">
+                    </div>
+                    <div class="blog-info">
+                        <span class="blog-date">May 8, 2025</span>
+                        <h3>Modern Web Development Trends</h3>
+                        <p>Explore the latest trends in web development and how they're shaping the future of the internet.</p>
+                        <span class="blog-tag">Web Development</span>
+                        <span class="blog-tag">Trends</span>
+                        <div style="margin-top: 15px;">
+                            <a href="blog-post.html">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="/api/placeholder/350/200" alt="Blog Image">
+                    </div>
+                    <div class="blog-info">
+                        <span class="blog-date">May 2, 2025</span>
+                        <h3>Mastering CSS Grid Layout</h3>
+                        <p>Learn how to create responsive layouts with CSS Grid that work across all devices.</p>
+                        <span class="blog-tag">CSS</span>
+                        <span class="blog-tag">Tutorial</span>
+                        <div style="margin-top: 15px;">
+                            <a href="blog-post.html">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="/api/placeholder/350/200" alt="Blog Image">
+                    </div>
+                    <div class="blog-info">
+                        <span class="blog-date">April 25, 2025</span>
+                        <h3>Introduction to JavaScript Frameworks</h3>
+                        <p>A comparison of popular JavaScript frameworks and when to use each one.</p>
+                        <span class="blog-tag">JavaScript</span>
+                        <span class="blog-tag">Frameworks</span>
+                        <div style="margin-top: 15px;">
+                            <a href="blog-post.html">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="blog.html" class="btn">View All Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Me</h3>
+                    <p>I'm a passionate web developer focused on creating modern, responsive web applications with attention to detail and user experience.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="about.html">About Me</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Your Location</p>
+                    <p><i class="fas fa-envelope"></i> email@example.com</p>
+                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add your custom JavaScript here
+        document.addEventListener('DOMContentLoaded', function() {
+            // For example, you could add smooth scrolling to anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
